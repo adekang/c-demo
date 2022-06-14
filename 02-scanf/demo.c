@@ -1,4 +1,4 @@
-// 格式化输入
+// 格式化输�?
 #include <stdio.h>
 
 int main()
@@ -10,7 +10,7 @@ int main()
 
   scanf("%d", &a);
   scanf("%f", &b);
-  // getchar 是一个把输入缓冲区的内容读取到缓冲区的函数，
+  // getchar
   getchar();
   scanf("%c", &c);
   scanf("%s", str);
