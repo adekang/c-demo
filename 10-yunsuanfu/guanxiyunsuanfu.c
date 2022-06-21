@@ -9,13 +9,22 @@ int main()
   a = 4, b = 5;
   if (a > 3 && b > 3)
   {
-    printf("true");
+    printf("true\n");
   }
   else
   {
-    printf("false");
+    printf("false\n");
   }
-
+  //  判断2个浮点数是否相等
+  float f = 234.56;
+  if (f - 234.56 > -0.000001 && f - 234.56 < 0.000001)
+  {
+    printf("true\n");
+  }
+  else
+  {
+    printf("false\n");
+  }
   return 0;
 }
 
