@@ -1,8 +1,14 @@
 {
-   "[cpp]": {
-        "files.encoding": "gbk"
-    },
-    "[c]": {
-        "files.encoding": "gbk"
-    }
+  "[cpp]": {
+    "files.encoding": "gbk"
+  },
+  "[c]": {
+    "files.encoding": "gbk"
+  },
+  "files.associations": {
+    "*.cjson": "jsonc",
+    "*.wxss": "css",
+    "*.wxs": "javascript",
+    "stdio.h": "c"
+  }
 }
