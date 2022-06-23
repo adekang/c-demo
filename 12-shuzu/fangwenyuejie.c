@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-// 访问越界
+// 访问越界 访问了不属于自己的空间
 int main()
 {
   int j = 10;
