@@ -3,6 +3,5 @@
 // ½á¹¹Ìå
 int main()
 {
-
   return 0;
 }
