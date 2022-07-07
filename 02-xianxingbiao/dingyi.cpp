@@ -12,6 +12,7 @@ typedef struct
   int length;
 } SqList;
 
+// 插入元素
 bool ListInsert(SqList &L, int i, ElemType e)
 {
   if (i < 1 || i > L.length + 1) // 判断要插入的位置是否合法
