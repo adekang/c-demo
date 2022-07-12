@@ -68,6 +68,34 @@ LinkList GetElem(LinkList L, int i)
   }
   return p;
 }
+// 按值查找
+LinkList LocateLem(LinkList L, ElemType e)
+{
+  LinkList p = L->next;
+
+  while (p && p->data != e)
+  {
+    p = p->next;
+  }
+
+  return p;
+}
+
+// 插值操作
+bool ListFrontInsert(LinkList L, int i, ElemType e)
+{
+  LinkList p = GetElem(L, i - 1);
+  if (p == NULL)
+  {
+    return false;
+  }
+  LinkList el = (LinkList)malloc(sizeof(LNode));
+  el->data = e;
+
+  el->next = p->next;
+  p->next = el;
+  return true;
+}
 
 // 链表打印
 void PrintList(LinkList L)
@@ -86,14 +114,41 @@ int main()
   LinkList L;      // 链表头是结构体指针类型；
   LinkList search; // 用来存储拿到的某一个节点
 
+  /* 头插法新建链表 */
   // CreatList1(L); // 头插法新建链表
+  // PrintList(L);
+
+  /* 尾插法新建链表 */
   CreatList2(L); // 尾插法新建链表
   // PrintList(L);
-  search = GetElem(L, 2); // 查找链表第二个位置的元素
-  if (search != NULL)
-  {
-    printf("查找成功\n");
-    printf("%d\n", search->data);
-  }
+
+  /* 查找链表第二个位置的元素 */
+  // search = GetElem(L, 2);   // 查找链表第二个位置的元素
+  // if (search != NULL)
+  // {
+  //   printf("查找成功\n");
+  //   printf("%d\n", search->data);
+  // }
+  // else
+  // {
+  //   printf("查找失败\n");
+  // }
+
+  /* 按值查询 */
+  // search = LocateLem(L, 5); // 按值查询
+  // if (search != NULL)
+  // {
+  //   printf("查找成功\n");
+  //   printf("%d\n", search->data);
+  // }
+  // else
+  // {
+  //   printf("查找失败\n");
+  // }
+
+  /* 新结点插入第i个位置 */
+  ListFrontInsert(L, 2, 66); //新结点插入第i个位置
+  PrintList(L);
+
   return 0;
 }
