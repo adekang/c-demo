@@ -97,6 +97,23 @@ bool ListFrontInsert(LinkList L, int i, ElemType e)
   return true;
 }
 
+// 删除节点
+bool DeleteElm(LinkList L, int i)
+{
+  LinkList p, q;
+
+  p = GetElem(L, i - 1);
+  if (p == NULL)
+  {
+    return false; //删除的位置不对
+  }
+  q = p->next;
+  p->next = q->next;
+
+  free(q);
+  q = NULL; // 防止变为野指针
+  return true;
+}
 // 链表打印
 void PrintList(LinkList L)
 {
@@ -147,7 +164,11 @@ int main()
   // }
 
   /* 新结点插入第i个位置 */
-  ListFrontInsert(L, 2, 66); //新结点插入第i个位置
+  // ListFrontInsert(L, 2, 66); //新结点插入第i个位置
+  // PrintList(L);
+
+  /* 结点删除第i个位置 */
+  DeleteElm(L, 2); //新结点插入第i个位置
   PrintList(L);
 
   return 0;
