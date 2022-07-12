@@ -47,6 +47,28 @@ LinkList CreatList2(LinkList &L)
   return L;
 }
 
+// 查找对应位置的节点的值
+LinkList GetElem(LinkList L, int i)
+{
+  LinkList p;
+  p = L->next;
+  int j = 1;
+  if (i == 0)
+  {
+    return L;
+  }
+  if (i < 1)
+  {
+    return NULL;
+  }
+  while (p && j < i)
+  {
+    p = p->next;
+    j++;
+  }
+  return p;
+}
+
 // 链表打印
 void PrintList(LinkList L)
 {
@@ -66,6 +88,12 @@ int main()
 
   // CreatList1(L); // 头插法新建链表
   CreatList2(L); // 尾插法新建链表
-  PrintList(L);
+  // PrintList(L);
+  search = GetElem(L, 2); // 查找链表第二个位置的元素
+  if (search != NULL)
+  {
+    printf("查找成功\n");
+    printf("%d\n", search->data);
+  }
   return 0;
 }
