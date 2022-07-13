@@ -99,6 +99,7 @@ bool DListFrontInsert(DLinkList DL, int i, ElemType e)
   return true;
 }
 
+// 节点删除
 bool DListDelete(DLinkList DL, int i)
 {
   DLinkList p = GetElem(DL, i - 1);
@@ -117,7 +118,8 @@ bool DListDelete(DLinkList DL, int i)
   {
     q->next->prior = p;
   }
-  free(p);
+  free(q);
+  return true;
 }
 
 // 链表遍历打印

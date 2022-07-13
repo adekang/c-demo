@@ -108,6 +108,11 @@ bool DeleteElm(LinkList L, int i)
     return false; //删除的位置不对
   }
   q = p->next;
+
+  if (q == NULL) //删除的位置不对
+  {
+    return false;
+  }
   p->next = q->next;
 
   free(q);
