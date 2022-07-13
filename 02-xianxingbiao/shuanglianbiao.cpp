@@ -99,6 +99,27 @@ bool DListFrontInsert(DLinkList DL, int i, ElemType e)
   return true;
 }
 
+bool DListDelete(DLinkList DL, int i)
+{
+  DLinkList p = GetElem(DL, i - 1);
+  if (p == NULL)
+  {
+    return false;
+  }
+  DLinkList q;
+  q = p->next;
+  if (q == NULL) // 删除的元素不存在
+  {
+    return false;
+  }
+  p->next = q->next;
+  if (q->next != NULL)
+  {
+    q->next->prior = p;
+  }
+  free(p);
+}
+
 // 链表遍历打印
 void PrintList(DLinkList L)
 {
@@ -127,5 +148,9 @@ int main()
 
   /* 新节点插入第几个位置 头插法 */
   DListFrontInsert(DL, 2, 44);
+  PrintList(DL);
+
+  /* 删除第几个位置的节点*/
+  DListDelete(DL, 2);
   PrintList(DL);
 }
