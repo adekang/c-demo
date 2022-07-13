@@ -58,9 +58,45 @@ DLinkList DListTailInsert(DLinkList &DL)
   return DL;
 }
 
-/* 新节点插入第几个位置 头插法 */
-DLinkList DListFrontInsert(DLinkList &DL, int i, ElemType e)
+// 查找对应位置的节点的值
+DLinkList GetElem(DLinkList L, int i)
 {
+  DLinkList p;
+  p = L->next;
+  int j = 1;
+  if (i == 0)
+  {
+    return L;
+  }
+  if (i < 1)
+  {
+    return NULL;
+  }
+  while (p && j < i)
+  {
+    p = p->next;
+    j++;
+  }
+  return p;
+}
+
+/* 新节点插入第几个位置 头插法 */
+bool DListFrontInsert(DLinkList DL, int i, ElemType e)
+{
+  DLinkList p = GetElem(DL, i - 1);
+  if (p == NULL)
+  {
+    return false;
+  }
+  DLinkList s = (DLinkList)malloc(sizeof(DNode));
+  s->data = e;
+  s->next = p->next;
+  p->next->prior = s;
+  ;
+  s->prior = p;
+  p->next = s;
+
+  return true;
 }
 
 // 链表遍历打印
