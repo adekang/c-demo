@@ -33,6 +33,30 @@ bool Push(SqStack &S, ElemType i)
   return true;
 }
 
+/* 获取栈顶位置 */
+bool GetTop(SqStack S, ElemType &m)
+{
+  if (S.top == -1)
+  {
+    printf("栈空，无法取栈顶元素\n");
+    return false;
+  }
+  m = S.data[S.top];
+  return true;
+}
+
+bool Pop(SqStack &S, ElemType &m)
+{
+  if (S.top == -1)
+  {
+    printf("栈空，无法取栈顶元素\n");
+    return false;
+  }
+  m = S.data[S.top];
+  S.top--;
+  //  等价于  m = S.data[S.top--];
+  return true;
+}
 // 栈
 int main()
 {
@@ -47,9 +71,24 @@ int main()
   {
     printf("栈为空\n");
   }
+
+  /* 入栈 */
   Push(S, 3); // 入栈元素3
   Push(S, 4); // 入栈元素4
   Push(S, 5); // 入栈元素5
 
+  /* 获取栈顶位置 */
+  flag = GetTop(S, m);
+  if (flag)
+  {
+    printf("栈顶元素为：%d\n", m);
+  }
+
+  /* 弹栈 */
+  flag = Pop(S, m);
+  if (flag)
+  {
+    printf("弹出的元素为：%d\n", m);
+  }
   return 0;
 }
