@@ -14,6 +14,61 @@ typedef struct tag
   struct tag *next;
 } tag_t, *ptag_t;
 
+void PreOrder(BiTree p)
+{
+  if (p != NULL)
+  {
+    putchar(p->c);
+    PreOrder(p->lchild);
+    PreOrder(p->rchild);
+  }
+}
+void InOrder(BiTree p)
+{
+  if (p != NULL)
+  {
+    PreOrder(p->lchild);
+    putchar(p->c);
+    PreOrder(p->rchild);
+  }
+}
+void PostOrder(BiTree p)
+{
+  if (p != NULL)
+  {
+    PreOrder(p->lchild);
+    PreOrder(p->rchild);
+    putchar(p->c);
+  }
+}
+
+// 中序遍历非递归
+void InOrder2(BiTree p)
+{
+}
+
+// 层次遍历
+void LevelOrder(BiTree T)
+{
+  // LinkQueue Q;
+  // InitQueue(Q);
+  // BiTree p;
+  // EnQueue(Q, T); //树根入队
+  // while (!IsEmpty(Q))
+  // {
+  //   DeQueue(Q, p); //出队当前结点并打印
+  //   putchar(p->c);
+  //   if (p->lchild != NULL)
+  //   {
+  //     EnQueue(Q, p->lchild); //入队左孩子
+  //   }
+  //   if (p->rchild != NULL)
+  //   {
+  //     EnQueue(Q, p->rchild); //入队右孩子
+  //   }
+  // }
+}
+
 int main()
 {
   BiTree pnew;
@@ -21,12 +76,12 @@ int main()
   char c;
   BiTree tree = NULL; //树根
   // phead 对头 ptail 队尾
-  ptag_t phead = NULL, ptail = NULL, listpnew, pcur;
+  ptag_t phead = NULL, ptail = NULL, listpnew = NULL, pcur = NULL;
   while (scanf("%c", &c) != EOF)
   {
     if (c == '\n')
     {
-      continue;
+      break;
     }
     pnew = (BiTree)calloc(1, sizeof(BiTNode));
     pnew->c = c;                                 //数据放进去
@@ -58,7 +113,25 @@ int main()
     }
   }
 
-  // abcdefg
-  // preOrder(tree);
+  // abcdefghij
+
+  printf("\n----先序遍历---\n");
+  // 先打印当前结点，打印左孩子，打印右孩子
+  PreOrder(tree);
+
+  printf("\n----中序遍历---\n");
+  // 先打印左孩子，打印父亲，打印右孩子
+  InOrder(tree);
+
+  printf("\n----后序遍历---\n");
+  // 先打印左孩子，打印右孩子，最后打印父亲
+  PostOrder(tree);
+
+  printf("\n----中序非递归遍历---\n");
+  // 先打印左孩子，打印父亲，打印右孩子
+  InOrder2(tree);
+  printf("\n----层次遍历---\n");
+  // 先打印左孩子，打印父亲，打印右孩子
+  LevelOrder(tree);
   return 0;
 }
