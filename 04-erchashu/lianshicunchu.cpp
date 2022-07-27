@@ -134,5 +134,6 @@ int main()
   // printf("\n----层次遍历---\n");
   // 先打印左孩子，打印父亲，打印右孩子
   // LevelOrder(tree);
+  printf("\n----end---\n");
   return 0;
 }
