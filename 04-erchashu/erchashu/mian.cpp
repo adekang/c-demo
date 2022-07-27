@@ -1,18 +1,4 @@
-#include <stdio.h>
-#include <stdlib.h>
-
-typedef char BiElemType;
-typedef struct BiTNode
-{
-  BiElemType c; //书籍上的data
-  struct BiTNode *lchild, *rchild;
-} BiTNode, *BiTree;
-
-typedef struct tag
-{
-  BiTree p; // 树的某个节点的地址值
-  struct tag *next;
-} tag_t, *ptag_t;
+#include "function.h"
 
 void PreOrder(BiTree p)
 {
@@ -43,30 +29,48 @@ void PostOrder(BiTree p)
 }
 
 // 中序遍历非递归
-void InOrder2(BiTree p)
+void InOrder2(BiTree T)
 {
+  SqStack S;
+  InitStack(S);
+  BiTree p = T;
+
+  while (p || !StackEmpty(S))
+  {
+    if (p)
+    {
+      Push(S, p);
+      p = p->lchild;
+    }
+    else
+    {
+      Pop(S, p);
+      putchar(p->c);
+      p = p->rchild;
+    }
+  }
 }
 
 // 层次遍历
 void LevelOrder(BiTree T)
 {
-  // LinkQueue Q;
-  // InitQueue(Q);
-  // BiTree p;
-  // EnQueue(Q, T); //树根入队
-  // while (!IsEmpty(Q))
-  // {
-  //   DeQueue(Q, p); //出队当前结点并打印
-  //   putchar(p->c);
-  //   if (p->lchild != NULL)
-  //   {
-  //     EnQueue(Q, p->lchild); //入队左孩子
-  //   }
-  //   if (p->rchild != NULL)
-  //   {
-  //     EnQueue(Q, p->rchild); //入队右孩子
-  //   }
-  // }
+  LinkQueue Q;  //辅助队列
+  InitQueue(Q); // 初始化队列
+  BiTree p;
+  EnQueue(Q, T); // 树根入队
+  while (!IsEmpty(Q))
+  {
+    DeQueue(Q, p);
+    putchar(p->c);
+    if (p->lchild != NULL)
+    {
+      EnQueue(Q, p->lchild);
+    }
+    if (p->rchild != NULL)
+    {
+      EnQueue(Q, p->rchild);
+    }
+  }
 }
 
 int main()
@@ -97,8 +101,8 @@ int main()
     }
     else
     {
-      ptail->next = listpnew; //新节点放入链表，尾插法
-      ptail = listpnew;       // 指向队列尾部
+      ptail->pnext = listpnew; //新节点放入链表，尾插法
+      ptail = listpnew;        // 指向队列尾部
     }
     // pcur 始终指向要插入节点的位置
     // 如何把新节点放入树
@@ -109,7 +113,7 @@ int main()
     else if (pcur->p->rchild == NULL) //把新结点放到要插入结点的右边
     {
       pcur->p->rchild = pnew;
-      pcur = pcur->next; // pcur 左右都放了结点后，pcur指向下一个
+      pcur = pcur->pnext; // pcur 左右都放了结点后，pcur指向下一个
     }
   }
 
@@ -127,12 +131,12 @@ int main()
   // 先打印左孩子，打印右孩子，最后打印父亲
   PostOrder(tree);
 
-  // TODO 在erchashu 文件夹内以下代码
-  // printf("\n----中序非递归遍历---\n");
+  printf("\n----中序非递归遍历---\n");
   // 先打印左孩子，打印父亲，打印右孩子
-  // InOrder2(tree);
-  // printf("\n----层次遍历---\n");
+  InOrder2(tree);
+
+  printf("\n----层次遍历---\n");
   // 先打印左孩子，打印父亲，打印右孩子
-  // LevelOrder(tree);
+  LevelOrder(tree);
   return 0;
 }
