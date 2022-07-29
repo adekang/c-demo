@@ -117,6 +117,7 @@ void InOrder(BiTree T)
   }
 }
 
+// ¶ş²æÅÅĞòÊ÷
 int main()
 {
   BiTree T;
