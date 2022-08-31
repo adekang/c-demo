@@ -377,9 +377,9 @@ int main()
   // 无向图自定义"图"(自己输入数据，输入的方法可以参考create_example_lgraph初始化好的数据)
   // pG = create_lgraph();
   //无向图的创建，采用已有的 "图"
-  // pG = create_example_lgraph();
+  pG = create_example_lgraph();
   //有向图的创建
-  pG = create_example_lgraph_directed();
+  // pG = create_example_lgraph_directed();
   // 打印图
   print_lgraph(*pG);
   DFSTraverse(*pG); //深度优先遍历
